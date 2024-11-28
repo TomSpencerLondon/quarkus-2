@@ -78,3 +78,14 @@ Create your first JPA entity
 [Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
 
 # quarkus-2
+
+10148  mvn clean package
+10149  mvn quarkus:run
+10150  mvn quarkus:run -DenableDebug
+10151* history
+10152* curl -d '"Dan"' -X POST localhost:8080/api/greeting
+10153* curl -d '"Dan"' -X POST localhost:8081/api/greeting
+10154  mvn quarkus:deploy
+10155* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net//api/greeting
+10156* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net/api/greeting
+
