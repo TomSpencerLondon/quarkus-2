@@ -89,3 +89,29 @@ Create your first JPA entity
 10155* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net//api/greeting
 10156* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net/api/greeting
 
+
+### Set up
+Used this:
+https://piotrminkowski.com/2024/01/31/serverless-on-azure-function-with-quarkus/
+
+in conjunction with all this stuff:
+```bash
+10139  az account show
+10140  az group create -l eastus -n quarkus-serverless
+10141  az storage account create -n pminkowsserverless \\n     -g quarkus-serverless \\n     -l eastus \\n     --sku Standard_LRS
+10142  az storage account create -n tomsserverless \\n     -g quarkus-serverless \\n     -l eastus \\n     --sku Standard_LRS
+10143  az functionapp create -n pminkows-account-function \\n     -c eastus \\n     --os-type Linux \\n     --functions-version 4 \\n     -g quarkus-serverless \\n     --runtime java \\n     --runtime-version 17.0 \\n     -s tomsserverless
+10144  az functionapp create -n toms-account-function \\n     -c eastus \\n     --os-type Linux \\n     --functions-version 4 \\n     -g quarkus-serverless \\n     --runtime java \\n     --runtime-version 17.0 \\n     -s tomsserverless
+10145  ls
+10146  quarkus create app com.example:my-quarkus-app \\n    --extension=funqy-http,azure-functions-http,hibernate-orm-panache,jdbc-h2\n
+10147  cd my-quarkus-app
+10148* mvn clean package
+10149* mvn quarkus:run
+10150* mvn quarkus:run -DenableDebug
+10151* history
+10152* curl -d '"Dan"' -X POST localhost:8080/api/greeting
+10153* curl -d '"Dan"' -X POST localhost:8081/api/greeting
+10154* mvn quarkus:deploy
+10155* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net//api/greeting
+10156* curl -d '"Dan"' -X POST https://toms-account-function.azurewebsites.net/api/greeting
+```
